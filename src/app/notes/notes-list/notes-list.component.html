@@ -1,6 +1,12 @@
 <h1>Create a new workout!</h1>
 <p>Create a new workout to add to your list of workouts [work in progress]</p>
 
+<mwl-calendar-week-view
+  precision="minutes"
+  [viewDate]="viewDate"
+  [events]="events">
+</mwl-calendar-week-view>
+
 <input [(ngModel)]="content" placeholder="Add a new workout" class="input">
 
 

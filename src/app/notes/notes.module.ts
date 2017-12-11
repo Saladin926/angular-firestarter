@@ -11,12 +11,17 @@ import { NoteDetailComponent } from './note-detail/note-detail.component';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
     AngularFirestoreModule.enablePersistence(),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
   ],
   declarations: [
     NotesListComponent,
