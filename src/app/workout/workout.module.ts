@@ -10,6 +10,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
+import { WorkoutMainComponent } from './workout-main/workout-main.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { CalendarModule } from 'angular-calendar';
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
   ],
-  declarations: [WorkoutWeekComponent],
+  declarations: [WorkoutWeekComponent, WorkoutMainComponent],
   //providers: [WorkoutService],
 })
 export class WorkoutModule { }
