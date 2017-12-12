@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CalendarEvent } from 'angular-calendar';
-import { addDays, addHours, startOfDay } from 'date-fns';
 
 @Component({
   selector: 'workout-week',
@@ -20,5 +19,5 @@ export class WorkoutWeekComponent implements OnInit {
   ngOnInit() {
   }
 
-  events: CalendarEvent[] = [];
+  @Input() events: CalendarEvent[];
 }
