@@ -1,3 +1,13 @@
 <h1>Workout Week</h1>
 
 <workout-week [events]="events"></workout-week>
+
+<ng-template #showSelectWorkoutButton>
+	<button class="button is-success" (click)="selectWorkout()">
+	 Select Workout
+	</button>
+</ng-template>
+
+<div *ngIf="showList; else showSelectWorkoutButton">
+	<workout-list></workout-list>
+</div>

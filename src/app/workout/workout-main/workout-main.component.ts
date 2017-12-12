@@ -11,10 +11,16 @@ import { types } from '../workout.types'
   styleUrls: ['./workout-main.component.scss']
 })
 export class WorkoutMainComponent implements OnInit {
+  showList: boolean = false;
+  currentWorkout: any = null;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectWorkout() {
+    this.showList = true;
   }
 
   events: CalendarEvent[] = [
