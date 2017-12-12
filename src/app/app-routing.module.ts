@@ -5,7 +5,7 @@ import { UserLoginComponent } from './ui/user-login/user-login.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ReadmePageComponent } from './ui/readme-page/readme-page.component';
 import { NotesListComponent } from './notes/notes-list/notes-list.component';
-import { WorkoutWeekComponent } from './workout/workout-week/workout-week.component';
+import { WorkoutMainComponent } from './workout/workout-main/workout-main.component';
 
 import { AuthGuard } from './core/auth.guard';
 import { CoreModule } from './core/core.module';
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'items', component: ItemsListComponent, canActivate: [AuthGuard] },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
-  { path: 'workout', component: WorkoutWeekComponent,  canActivate: [AuthGuard] },
+  { path: 'workout', component: WorkoutMainComponent,  canActivate: [AuthGuard] },
   // uploads are lazy loaded
   { path: 'uploads', loadChildren: './uploads/shared/upload.module#UploadModule', canActivate: [AuthGuard] },
 ];
