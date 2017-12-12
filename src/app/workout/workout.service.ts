@@ -9,7 +9,24 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class WorkoutService {
+  workoutsCollection: AngularFirestoreCollection<Workout>;
 
-  constructor() { }
+  constructor(private afs: AngularFirestore) {
+    this.workoutsCollection = this.afs.collection('workouts');
+  }
+
+  getData(): Observable<Workout[]> {
+    return this.workoutsCollection.valueChanges();
+  }
+
+  getSnapshot(): Observable<Workout[]> {
+    // ['added', 'modified', 'removed']
+    return this.workoutsCollection.snapshotChanges().map((actions) => {
+      return actions.map((a) => {
+        const data = a.payload.doc.data() as Workout;
+        return { id: a.payload.doc.id, name: data.name, description: data.description, days: data.days };
+      });
+    });
+  }
 
 }
