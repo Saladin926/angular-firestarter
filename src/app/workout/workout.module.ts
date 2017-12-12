@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { WorkoutMainComponent } from './workout-main/workout-main.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
+import { WorkoutService } from './workout.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { WorkoutListComponent } from './workout-list/workout-list.component';
     CalendarModule.forRoot(),
   ],
   declarations: [WorkoutWeekComponent, WorkoutMainComponent, WorkoutListComponent],
+  providers: [WorkoutService],
   //providers: [WorkoutService],
 })
 export class WorkoutModule { }
