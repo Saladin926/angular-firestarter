@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { addDays, startOfDay } from 'date-fns';
 
+import { types } from '../workout.types'
+
 @Component({
   selector: 'workout-main',
   templateUrl: './workout-main.component.html',
@@ -19,17 +21,17 @@ export class WorkoutMainComponent implements OnInit {
     {
       start: startOfDay(new Date()),
       title: 'Event 1',
-      color: {primary: '#ad2121', secondary: '#FAE3E3'},
+      color: types.legs.color,
     },
     {
       start: startOfDay(addDays(new Date(), 1)),
       title: 'Event 2',
-      color: {primary: '#1e90ff', secondary: '#D1E8FF'}
+      color: types.shoulders.color
     },
     {
       start: startOfDay(new Date()),
       title: 'Event 3',
-      color: {primary: '#e3bc08', secondary: '#FDF1BA'}
+      color: types.back.color
     }
   ];
 
