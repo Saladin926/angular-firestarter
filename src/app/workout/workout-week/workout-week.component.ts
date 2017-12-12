@@ -5,7 +5,12 @@ import { addDays, addHours, startOfDay } from 'date-fns';
 
 @Component({
   selector: 'workout-week',
-  templateUrl: './workout-week.component.html',
+  template: `
+    <mwl-calendar-week-view
+      [viewDate]="viewDate"
+      [events]="events">
+    </mwl-calendar-week-view>
+  `,
   styleUrls: ['./workout-week.component.scss']
 })
 export class WorkoutWeekComponent implements OnInit {
