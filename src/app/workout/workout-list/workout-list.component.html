@@ -1,3 +1,14 @@
-<p>
-  workout-list works!
-</p>
+<div *ngFor="let workout of workouts | async">
+  <div>
+  	<h3>{{workout.name}}</h3>
+  	<p>{{workout.description}}</p>
+  	<button class="button" (click)="selectWorkout(workout)">
+  		Select
+  	</button>
+  </div>
+  <hr>
+</div>
+
+<button class="button is-success" (click)="createNewWorkout()">
+	Create New Workout
+</button>
