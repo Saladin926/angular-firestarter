@@ -25,6 +25,5 @@ import { WorkoutService } from './workout.service';
   ],
   declarations: [WorkoutWeekComponent, WorkoutMainComponent, WorkoutListComponent],
   providers: [WorkoutService],
-  //providers: [WorkoutService],
 })
 export class WorkoutModule { }
