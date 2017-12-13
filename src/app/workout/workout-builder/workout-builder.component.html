@@ -24,11 +24,14 @@
 </div>
 
 <ng-container *ngFor="let exerciseType of exercises | async">
-<ul *ngIf="exerciseType.id === currentType">
-	<li *ngFor="let exercise of exerciseType.exercises">
-		{{exercise.name}}
-	</li>
-</ul>
+<div *ngIf="exerciseType.id === currentType" class="exercise-list">
+	<h3>{{exerciseType.name}}</h3>
+	<ul>
+		<li *ngFor="let exercise of exerciseType.exercises">
+			{{exercise.name}}
+		</li>
+	</ul>
+</div>
 </ng-container>
 
 <button (click)="showInfo()">Info</button>
