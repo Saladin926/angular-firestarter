@@ -1,14 +1,14 @@
 export const types: any = {
-  shoulders: {
-    color: {
-      primary: '#2F48EB', // blue
-      secondary: '#B7C0F7',
-    },
-  },
   back: {
     color: {
       primary: '#1E90FF', // light blue
       secondary: '#D1E8FF',
+    },
+  },
+  shoulders: {
+    color: {
+      primary: '#2F48EB', // blue
+      secondary: '#B7C0F7',
     },
   },
   chest: {
