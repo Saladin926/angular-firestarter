@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
+import { AuthService } from '../core/auth.service';
+
 import { Workout } from './workout-model';
 
 import { Observable } from 'rxjs/Observable';
@@ -11,8 +13,12 @@ import { map } from 'rxjs/operators';
 export class WorkoutService {
   workoutsCollection: AngularFirestoreCollection<Workout>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private auth: AuthService) {
     this.workoutsCollection = this.afs.collection('workouts');
+  }
+
+  getCurrentWorkout(): Observable<Workout | undefined> {
+    return this.auth.user.map(user => user!.workout);
   }
 
   getData(): Observable<Workout[]> {
