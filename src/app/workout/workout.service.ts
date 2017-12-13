@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 import { AuthService } from '../core/auth.service';
 
-import { Workout, Exercise } from './workout-model';
+import { Workout, Exercises } from './workout-model';
 import { User } from '../core/user-model'
 
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class WorkoutService {
   workoutsCollection: AngularFirestoreCollection<Workout>;
-  exercisesCollection: AngularFirestoreCollection<any>;
+  exercisesCollection: AngularFirestoreCollection<Exercises>;
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
     this.workoutsCollection = this.afs.collection('workouts');
@@ -39,6 +39,15 @@ export class WorkoutService {
       return actions.map((a) => {
         const data = a.payload.doc.data() as Workout;
         return { id: a.payload.doc.id, name: data.name, description: data.description, days: data.days };
+      });
+    });
+  }
+
+  getExercises(): Observable<Exercises[]> {
+    return this.exercisesCollection.snapshotChanges().map((actions) => {
+      return actions.map((a) => {
+        const data = a.payload.doc.data() as Exercises;
+        return { id: a.payload.doc.id, name: data.name, exercises: data.exercises };
       });
     });
   }
