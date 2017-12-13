@@ -3,6 +3,12 @@ export interface Exercise {
 	type: string;
 }
 
+export interface Exercises {
+   id?: string;
+   name: string;
+   exercises: Exercise[];
+}
+
 export interface WorkoutDays {
 	[key: string]: Exercise[];
 }
