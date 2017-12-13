@@ -1,3 +1,34 @@
-<p>
-  workout-builder works!
-</p>
+<input [(ngModel)]="newWorkout.name" placeholder="Workout Name" class="input">
+<input [(ngModel)]="newWorkout.description" placeholder="Workout Description" class="input">
+
+<div>
+	<label>Day: 
+		<select [(ngModel)]="currentDay" class="capitalize">
+			<option *ngFor="let day of days; let key = index" value="{{key}}">{{day}}</option>
+		</select>
+	</label>
+</div>
+
+<ul>
+	<li *ngFor="let exercise of newWorkout.days[types[currentDay]]">
+		{{exercise.name}}
+	</li>
+</ul>
+
+<div>
+	<button *ngFor="let exerciseType of exercises | async" 
+	class="button" [ngStyle]="{backgroundColor: types[exerciseType.id].color.secondary}"
+	(click)="currentType=exerciseType.id">
+		{{exerciseType.name}}
+	</button>
+</div>
+
+<ng-container *ngFor="let exerciseType of exercises | async">
+<ul *ngIf="exerciseType.id === currentType">
+	<li *ngFor="let exercise of exerciseType.exercises">
+		{{exercise.name}}
+	</li>
+</ul>
+</ng-container>
+
+<button (click)="showInfo()">Info</button>
