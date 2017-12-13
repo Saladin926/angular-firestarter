@@ -2,6 +2,10 @@
 
 <workout-week [workout]="workout | async"></workout-week>
 
+<div *ngIf="createWorkout">
+	<workout-builder></workout-builder>
+</div>
+
 <ng-template #showSelectWorkoutButton>
 	<button class="button is-success" (click)="selectWorkout()">
 	 Select Workout
@@ -10,8 +14,4 @@
 
 <div *ngIf="showList; else showSelectWorkoutButton">
 	<workout-list (onSelected)="doWorkout($event)" ></workout-list>
-</div>
-
-<div *ngIf="createWorkout">
-	<workout-builder></workout-builder>
 </div>
