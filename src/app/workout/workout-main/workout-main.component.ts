@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { CalendarEvent } from 'angular-calendar';
-import { addDays, startOfDay } from 'date-fns';
+import { WorkoutService } from '../workout.service';
+import { Workout } from '../workout-model';
 
 import { types } from '../workout.types'
 
@@ -13,32 +14,15 @@ import { types } from '../workout.types'
 export class WorkoutMainComponent implements OnInit {
   showList: boolean = false;
   currentWorkout: any = null;
+  workout: Observable<Workout | undefined>;
 
-  constructor() { }
+  constructor(private workoutService: WorkoutService) { }
 
   ngOnInit() {
+    this.workout = this.workoutService.getCurrentWorkout();
   }
 
   selectWorkout() {
     this.showList = true;
   }
-
-  events: CalendarEvent[] = [
-    {
-      start: startOfDay(new Date()),
-      title: 'Event 1',
-      color: types.legs.color,
-    },
-    {
-      start: startOfDay(addDays(new Date(), 1)),
-      title: 'Event 2',
-      color: types.shoulders.color
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'Event 3',
-      color: types.back.color
-    }
-  ];
-
 }
