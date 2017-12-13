@@ -1,8 +1,10 @@
 <h1>Workout Week</h1>
 
-<workout-week [workout]="workout | async"></workout-week>
+<ng-template #showWeeklyWorkout>
+	<workout-week [workout]="workout | async"></workout-week>
+</ng-template>
 
-<div *ngIf="createWorkout">
+<div *ngIf="createWorkout; else showWeeklyWorkout">
 	<workout-builder></workout-builder>
 </div>
 
