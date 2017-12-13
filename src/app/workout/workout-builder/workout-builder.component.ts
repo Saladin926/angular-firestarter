@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WorkoutService } from '../workout.service';
-import { Exercises, Workout } from '../workout-model';
+import { Exercises, Exercise, Workout } from '../workout-model';
 
 import { days } from '../workout.days';
 import { types } from '../workout.types';
@@ -25,6 +25,20 @@ export class WorkoutBuilderComponent implements OnInit {
   ngOnInit() {
     this.exercises = this.workoutService.getExercises();
     this.currentType = Object.keys(types)[0];
+  }
+
+  addExercise(exercise: Exercise) {
+    let day: string = this.days[this.currentDay];
+
+    if (!this.newWorkout.days) {
+      this.newWorkout.days = {};
+    }
+
+    if (!this.newWorkout.days[day]) {
+      this.newWorkout.days[day] = [];
+    }
+
+    this.newWorkout.days[day].push(exercise);
   }
 
   showInfo() {

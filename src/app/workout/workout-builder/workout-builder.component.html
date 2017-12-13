@@ -10,7 +10,7 @@
 </div>
 
 <ul>
-	<li *ngFor="let exercise of newWorkout.days[types[currentDay]]">
+	<li *ngFor="let exercise of newWorkout.days[days[currentDay]]">
 		{{exercise.name}}
 	</li>
 </ul>
@@ -26,9 +26,9 @@
 <ng-container *ngFor="let exerciseType of exercises | async">
 <div *ngIf="exerciseType.id === currentType" class="exercise-list">
 	<h3>{{exerciseType.name}}</h3>
-	<ul>
+	<ul class="fa-ul">
 		<li *ngFor="let exercise of exerciseType.exercises">
-			{{exercise.name}}
+			<i class="fa-li fa fa-plus-circle" (click)="addExercise(exercise)"></i>{{exercise.name}}
 		</li>
 	</ul>
 </div>
