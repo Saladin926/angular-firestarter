@@ -9,12 +9,7 @@ import { NotifyService } from './notify.service';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 
-interface User {
-  uid: string;
-  email?: string | null;
-  photoURL?: string;
-  displayName?: string;
-}
+import { User } from './user-model'
 
 @Injectable()
 export class AuthService {
