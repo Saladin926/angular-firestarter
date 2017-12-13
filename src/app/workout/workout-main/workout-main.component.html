@@ -9,5 +9,5 @@
 </ng-template>
 
 <div *ngIf="showList; else showSelectWorkoutButton">
-	<workout-list></workout-list>
+	<workout-list (onSelected)="showList = false" ></workout-list>
 </div>

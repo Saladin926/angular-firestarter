@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WorkoutService } from '../workout.service';
@@ -11,6 +11,7 @@ import { Workout } from '../workout-model';
 })
 export class WorkoutListComponent implements OnInit {
   workouts: Observable<Workout[]>;
+  @Output() onSelected = new EventEmitter<boolean>();
 
   constructor(private workoutService: WorkoutService) { }
 
@@ -19,10 +20,12 @@ export class WorkoutListComponent implements OnInit {
   }
 
   selectWorkout(workout: Workout) {
+    this.onSelected.emit(true);
     console.log(workout);
   }
 
   createNewWorkout() {
+    this.onSelected.emit(true);
     console.log('TODO: Create new workout');
   }
 
