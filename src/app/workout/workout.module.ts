@@ -13,6 +13,7 @@ import { CalendarModule } from 'angular-calendar';
 import { WorkoutMainComponent } from './workout-main/workout-main.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { WorkoutService } from './workout.service';
+import { WorkoutBuilderComponent } from './workout-builder/workout-builder.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,12 @@ import { WorkoutService } from './workout.service';
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
   ],
-  declarations: [WorkoutWeekComponent, WorkoutMainComponent, WorkoutListComponent],
+  declarations: [
+    WorkoutWeekComponent,
+    WorkoutMainComponent,
+    WorkoutListComponent,
+    WorkoutBuilderComponent
+  ],
   providers: [WorkoutService],
 })
 export class WorkoutModule { }
