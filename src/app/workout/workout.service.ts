@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AuthService } from '../core/auth.service';
 
 import { Workout } from './workout-model';
+import { User } from '../core/user-model'
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -19,6 +20,11 @@ export class WorkoutService {
 
   getCurrentWorkout(): Observable<Workout | undefined> {
     return this.auth.user.map(user => user!.workout);
+  }
+
+  setUserWorkout(workout: Workout, uid: string) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    userRef.update({workout: workout});
   }
 
   getData(): Observable<Workout[]> {

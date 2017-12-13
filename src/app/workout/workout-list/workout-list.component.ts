@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { WorkoutService } from '../workout.service';
 import { Workout } from '../workout-model';
 
+import { AuthService } from '../../core/auth.service';
+
 @Component({
   selector: 'workout-list',
   templateUrl: './workout-list.component.html',
@@ -13,15 +15,15 @@ export class WorkoutListComponent implements OnInit {
   workouts: Observable<Workout[]>;
   @Output() onSelected = new EventEmitter<boolean>();
 
-  constructor(private workoutService: WorkoutService) { }
+  constructor(private workoutService: WorkoutService, public auth: AuthService) { }
 
   ngOnInit() {
     this.workouts = this.workoutService.getData();
   }
 
-  selectWorkout(workout: Workout) {
+  selectWorkout(workout: Workout, uid: string) {
     this.onSelected.emit(true);
-    console.log(workout);
+    this.workoutService.setUserWorkout(workout, uid);
   }
 
   createNewWorkout() {
