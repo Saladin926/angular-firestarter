@@ -9,5 +9,9 @@
 </ng-template>
 
 <div *ngIf="showList; else showSelectWorkoutButton">
-	<workout-list (onSelected)="showList = false" ></workout-list>
+	<workout-list (onSelected)="doWorkout($event)" ></workout-list>
+</div>
+
+<div *ngIf="createWorkout">
+	<workout-builder></workout-builder>
 </div>

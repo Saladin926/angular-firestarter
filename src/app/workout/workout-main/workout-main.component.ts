@@ -13,6 +13,7 @@ import { types } from '../workout.types'
 })
 export class WorkoutMainComponent implements OnInit {
   showList: boolean = false;
+  createWorkout: boolean = false;
   currentWorkout: any = null;
   workout: Observable<Workout | undefined>;
 
@@ -24,5 +25,11 @@ export class WorkoutMainComponent implements OnInit {
 
   selectWorkout() {
     this.showList = true;
+    this.createWorkout = false;
+  }
+
+  doWorkout(showCreate: boolean) {
+    this.showList = false;
+    this.createWorkout = showCreate;
   }
 }
