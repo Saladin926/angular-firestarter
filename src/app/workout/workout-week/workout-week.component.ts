@@ -12,8 +12,8 @@ import { days } from '../workout.days';
 @Component({
   selector: 'workout-week',
   template: `
-    <h2>{{workout?.name}}</h2>
-    <p>{{workout?.description}}</p>
+    <h2>{{_workout?.name}}</h2>
+    <p>{{_workout?.description}}</p>
     <mwl-calendar-week-view
       [viewDate]="viewDate"
       [events]="events">
