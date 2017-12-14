@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Workout } from '../workout-model';
 import { CalendarEvent } from 'angular-calendar';
@@ -26,30 +27,32 @@ export class WorkoutWeekComponent implements OnInit {
   private _workout: Workout | undefined;
 
   @Input()
-  set workout(workout: Workout | undefined) {
-    this._workout = workout;
-    this.events = [];
-    
-    if (!(workout && workout.days)) {
-      return;
-    }
+  set workout(workoutObserver: Observable<Workout | undefined>) {
+    workoutObserver.subscribe(workout => {
+      this._workout = workout;
+      this.events = [];
+      
+      if (!(workout && workout.days)) {
+        return;
+      }
 
-    let weekStart = startOfWeek(new Date());
+      let weekStart = startOfWeek(new Date());
 
-    for (let i = 0; i < days.length; i++) {
-      if (workout.days[days[i]]) {
-        for (let exercise of workout.days[days[i]]) {
-          this.events.push({
-            start: startOfDay(addDays(weekStart, i)),
-            title: exercise.name,
-            color: types[exercise.type].color,
-          });
+      for (let i = 0; i < days.length; i++) {
+        if (workout.days[days[i]]) {
+          for (let exercise of workout.days[days[i]]) {
+            this.events.push({
+              start: startOfDay(addDays(weekStart, i)),
+              title: exercise.name,
+              color: types[exercise.type].color,
+            });
+          }
         }
       }
-    }
+    });
   }
 
-  get workout(): Workout | undefined { return this._workout; }
+  get workout(): Observable<Workout | undefined> { return this._workout; }
 
   constructor() { }
 

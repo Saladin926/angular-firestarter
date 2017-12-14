@@ -1,7 +1,7 @@
 <h1>Workout Week</h1>
 
 <ng-template #showWeeklyWorkout>
-	<workout-week [workout]="workout | async"></workout-week>
+	<workout-week [workout]="workout"></workout-week>
 </ng-template>
 
 <div *ngIf="createWorkout; else showWeeklyWorkout">
