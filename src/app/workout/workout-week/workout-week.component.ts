@@ -25,9 +25,11 @@ export class WorkoutWeekComponent implements OnInit {
   viewDate: Date = new Date();
   events: CalendarEvent[] = [];
   private _workout: Workout | undefined;
+  workoutObserver: Observable<Workout | undefined>;
 
   @Input()
   set workout(workoutObserver: Observable<Workout | undefined>) {
+    this.workoutObserver = workoutObserver;
     workoutObserver.subscribe(workout => {
       this._workout = workout;
       this.events = [];
@@ -52,7 +54,7 @@ export class WorkoutWeekComponent implements OnInit {
     });
   }
 
-  get workout(): Observable<Workout | undefined> { return this._workout; }
+  get workout(): Observable<Workout | undefined> { return this.workoutObserver; }
 
   constructor() { }
 
