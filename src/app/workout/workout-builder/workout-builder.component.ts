@@ -52,10 +52,4 @@ export class WorkoutBuilderComponent implements OnInit {
     this.newWorkout.days[day].splice(index, 1);
     this.workoutService.updateLocalWorkout(this.newWorkout);
   }
-
-  showInfo() {
-    console.log(this.currentDay);
-    console.log(this.newWorkout);
-    console.log(this.currentType);
-  }
 }
