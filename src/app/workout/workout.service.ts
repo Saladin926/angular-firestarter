@@ -38,6 +38,10 @@ export class WorkoutService {
     userRef.update({workout: workout});
   }
 
+  addWorkout(workout: Workout) {
+    this.workoutsCollection.add(workout);
+  }
+
   getData(): Observable<Workout[]> {
     return this.workoutsCollection.valueChanges();
   }
