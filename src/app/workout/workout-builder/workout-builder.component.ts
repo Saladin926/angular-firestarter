@@ -19,8 +19,11 @@ export class WorkoutBuilderComponent implements OnInit {
   days: string[] = days;
   currentDay: number = 0;
   newWorkout: Workout = { name: '', description: '', days: {} };
+  newWorkoutObserver: Observable<Workout>;
 
-  constructor(private workoutService: WorkoutService) { }
+  constructor(private workoutService: WorkoutService) {
+    this.newWorkoutObserver = workoutService.localWorkoutUpdated$;
+  }
 
   ngOnInit() {
     this.exercises = this.workoutService.getExercises();
@@ -39,6 +42,7 @@ export class WorkoutBuilderComponent implements OnInit {
     }
 
     this.newWorkout.days[day].push(exercise);
+    this.workoutService.updateLocalWorkout(this.newWorkout);
   }
 
   showInfo() {
