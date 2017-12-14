@@ -3,19 +3,21 @@
 <input [(ngModel)]="newWorkout.name" placeholder="Workout Name" class="input">
 <input [(ngModel)]="newWorkout.description" placeholder="Workout Description" class="input">
 
-<div>
-	<label>Day: 
-		<select [(ngModel)]="currentDay" class="capitalize">
-			<option *ngFor="let day of days; let key = index" value="{{key}}">{{day}}</option>
-		</select>
-	</label>
-</div>
+<div class="exercise-list">
+	<h4>
+		<label>Day: 
+			<select [(ngModel)]="currentDay" class="capitalize">
+				<option *ngFor="let day of days; let key = index" value="{{key}}">{{day}}</option>
+			</select>
+		</label>
+	</h4>
 
-<ul>
-	<li *ngFor="let exercise of newWorkout.days[days[currentDay]]">
-		{{exercise.name}}
-	</li>
-</ul>
+	<ul>
+		<li *ngFor="let exercise of newWorkout.days[days[currentDay]]; let key = index">
+			{{exercise.name}} <i class="fa fa-trash" (click)="removeExercise(days[currentDay], key)"></i>
+		</li>
+	</ul>
+</div>
 
 <div>
 	<button *ngFor="let exerciseType of exercises | async" 

@@ -45,6 +45,14 @@ export class WorkoutBuilderComponent implements OnInit {
     this.workoutService.updateLocalWorkout(this.newWorkout);
   }
 
+  removeExercise(day: string, index: number) {
+    if (!(this.newWorkout && this.newWorkout.days)) {
+      return;
+    }
+    this.newWorkout.days[day].splice(index, 1);
+    this.workoutService.updateLocalWorkout(this.newWorkout);
+  }
+
   showInfo() {
     console.log(this.currentDay);
     console.log(this.newWorkout);
