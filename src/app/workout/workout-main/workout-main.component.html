@@ -1,19 +1,15 @@
 <h1>Workout Week</h1>
 
-<ng-template #showWeeklyWorkout>
-	<workout-week [workout]="workout"></workout-week>
-</ng-template>
+<workout-week *ngIf="!createWorkout" [workout]="workout"></workout-week>
 
-<div *ngIf="createWorkout; else showWeeklyWorkout">
-	<workout-builder></workout-builder>
+<div *ngIf="createWorkout">
+	<workout-builder (onFinished)="doWorkout(false)"></workout-builder>
 </div>
 
-<ng-template #showSelectWorkoutButton>
-	<button class="button is-success" (click)="selectWorkout()">
-	 Select Workout
-	</button>
-</ng-template>
+<button *ngIf="!showList && !createWorkout" class="button is-success" (click)="selectWorkout()">
+ 	Select Workout
+</button>
 
-<div *ngIf="showList; else showSelectWorkoutButton">
+<div *ngIf="showList">
 	<workout-list (onSelected)="doWorkout($event)" ></workout-list>
 </div>
