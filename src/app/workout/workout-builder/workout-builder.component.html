@@ -38,7 +38,9 @@
 </div>
 </ng-container>
 
-<button class="button is-success" (click)="saveWorkout()" 
+<div *ngIf="auth.user | async as user">
+<button class="button is-success" (click)="saveWorkout(user.uid)" 
 [disabled]="newWorkout.name.length < 2 || newWorkout.description.length < 1 || (newWorkout.days | json) == '{}' ">
 	Finish and Save Workout
 </button>
+</div>

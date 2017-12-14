@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { WorkoutService } from '../workout.service';
 import { Exercises, Exercise, Workout } from '../workout-model';
 
+import { AuthService } from '../../core/auth.service';
+
 import { days } from '../workout.days';
 import { types } from '../workout.types';
 
@@ -23,7 +25,7 @@ export class WorkoutBuilderComponent implements OnInit {
   newWorkout: Workout = { name: '', description: '', days: {} };
   newWorkoutObserver: Observable<Workout>;
 
-  constructor(private workoutService: WorkoutService) {
+  constructor(private workoutService: WorkoutService, public auth: AuthService) {
     this.newWorkoutObserver = workoutService.localWorkoutUpdated$;
   }
 
@@ -55,7 +57,9 @@ export class WorkoutBuilderComponent implements OnInit {
     this.workoutService.updateLocalWorkout(this.newWorkout);
   }
 
-  saveWorkout() {
+  saveWorkout(uid: string) {
+    this.workoutService.setUserWorkout(this.newWorkout, uid);
+    this.workoutService.addWorkout(this.newWorkout);
     this.onFinished.emit(true);
   }
 }
