@@ -22,13 +22,12 @@ export class WorkoutListComponent implements OnInit {
   }
 
   selectWorkout(workout: Workout, uid: string) {
-    this.onSelected.emit(true);
+    this.onSelected.emit(false);
     this.workoutService.setUserWorkout(workout, uid);
   }
 
   createNewWorkout() {
     this.onSelected.emit(true);
-    console.log('TODO: Create new workout');
   }
 
 }
