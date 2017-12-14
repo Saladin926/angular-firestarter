@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WorkoutService } from '../workout.service';
@@ -13,6 +13,8 @@ import { types } from '../workout.types';
   styleUrls: ['./workout-builder.component.scss']
 })
 export class WorkoutBuilderComponent implements OnInit {
+  @Output() onFinished = new EventEmitter<boolean>();
+
   types: any[] = types;
   currentType: string;
   exercises: Observable<Exercises[]>;
@@ -51,5 +53,9 @@ export class WorkoutBuilderComponent implements OnInit {
     }
     this.newWorkout.days[day].splice(index, 1);
     this.workoutService.updateLocalWorkout(this.newWorkout);
+  }
+
+  saveWorkout() {
+    this.onFinished.emit(true);
   }
 }
