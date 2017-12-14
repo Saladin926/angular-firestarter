@@ -38,6 +38,7 @@
 </div>
 </ng-container>
 
-<button class="button is-success" (click)="saveWorkout()">
+<button class="button is-success" (click)="saveWorkout()" 
+[disabled]="newWorkout.name.length < 2 || newWorkout.description.length < 1 || (newWorkout.days | json) == '{}' ">
 	Finish and Save Workout
 </button>
