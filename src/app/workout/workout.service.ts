@@ -10,14 +10,23 @@ import { User } from '../core/user-model'
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class WorkoutService {
   workoutsCollection: AngularFirestoreCollection<Workout>;
   exercisesCollection: AngularFirestoreCollection<Exercises>;
 
+  private localWorkoutUpdatedSource = new Subject<Workout>();
+  localWorkoutUpdated$ = this.localWorkoutUpdatedSource.asObservable();
+
   constructor(private afs: AngularFirestore, private auth: AuthService) {
     this.workoutsCollection = this.afs.collection('workouts');
     this.exercisesCollection = this.afs.collection('exercises');
+  }
+
+  updateLocalWorkout(workout: Workout) {
+    this.localWorkoutUpdatedSource.next(workout);
   }
 
   getCurrentWorkout(): Observable<Workout | undefined> {
